@@ -15,13 +15,13 @@ source = dict(enumerate(data))
 
 def mapfn(key, value):
     from stopwords import allStopWords
-    for line in value.split():
+    for line in value.splitlines():
         word=line.split(':::')  
         authors=word[1].split('::')  
         title=word[2]
         for author in authors:  
             for term in title.split():  
-                if term not in stop_words:  
+                if term not in allStopWords:  
                     if term.isalnum():  
                         yield author,term.lower()  
                     elif len(term)>1:  
