@@ -17,35 +17,14 @@ source = dict((file_name, file_contents(file_name))
 
 
 def mapfn(key, value):
-   stop_words=['all', 'herself', 'should', 'to', 'only', 'under', 'do', 'weve',
-            'very', 'cannot', 'werent', 'yourselves', 'him', 'did', 'these',
-            'she', 'havent', 'where', 'whens', 'up', 'are', 'further', 'what',
-            'heres', 'above', 'between', 'youll', 'we', 'here', 'hers', 'both',
-            'my', 'ill', 'against', 'arent', 'thats', 'from', 'would', 'been',
-            'whos', 'whom', 'themselves', 'until', 'more', 'an', 'those', 'me',
-            'myself', 'theyve', 'this', 'while', 'theirs', 'didnt', 'theres',
-            'ive', 'is', 'it', 'cant', 'itself', 'im', 'in', 'id', 'if', 'same',
-            'how', 'shouldnt', 'after', 'such', 'wheres', 'hows', 'off', 'i',
-            'youre', 'well', 'so', 'the', 'yours', 'being', 'over', 'isnt',
-            'through', 'during', 'hell', 'its', 'before', 'wed', 'had', 'lets',
-            'has', 'ought', 'then', 'them', 'they', 'not', 'nor', 'wont',
-            'theyre', 'each', 'shed', 'because', 'doing', 'some', 'shes',
-            'our', 'ourselves', 'out', 'for', 'does', 'be', 'by', 'on',
-            'about', 'wouldnt', 'of', 'could', 'youve', 'or', 'own', 'whats',
-            'dont', 'into', 'youd', 'yourself', 'down', 'doesnt', 'theyd',
-            'couldnt', 'your', 'her', 'hes', 'there', 'hed', 'their', 'too',
-            'was', 'himself', 'that', 'but', 'hadnt', 'shant', 'with', 'than',
-            'he', 'whys', 'below', 'were', 'and', 'his', 'wasnt', 'am', 'few',
-            'mustnt', 'as', 'shell', 'at', 'have', 'any', 'again', 'hasnt',
-            'theyll', 'no', 'when','other', 'which', 'you', 'who', 'most',
-            'ours ', 'why', 'having', 'once','a','-','.',',']
-   for line in value.splitlines():
+    from stopwords import allStopWords
+    for line in value.splitlines():
         word=line.split(':::')  
         authors=word[1].split('::')  
         title=word[2]
         for author in authors:  
             for term in title.split():  
-                if term not in stop_words:  
+                if term not in allStopWords:  
                     if term.isalnum():  
                         yield author,term.lower()  
                     elif len(term)>1:  
